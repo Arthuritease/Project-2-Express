@@ -1,0 +1,87 @@
+[
+  {
+    "id": "first routine",
+    "routine_index": "001",
+    "description": "Simple 3-step K beauty for those with dehydrated skin",
+    "image": "haha.png",
+    "title": "Hanbang Magic",
+    "user": {
+      "name": "Susie Salmon",
+      "email": "thrashingsalmon@gmail.com"
+    },
+    "skin_type": "combi_D",
+    "products": {
+      "cleanser": "Krave Beauty Matcha Hemp Hydrating Cleanser",
+      "toner": "Dear Klair's Supple Prep Toner",
+      "moisturizer": "BOJ Dynasty Cream"
+    },
+    "timing": "Both",
+    "comments": [
+      {
+        "score": 4,
+        "date": "2021-05-24",
+        "email": "lppl@hotmail.com",
+        "description": "Gave me baby skin! But would want this to provide more brightening effects"
+      },
+      {
+        "score": 4,
+        "date": "2021-05-24",
+        "email": "lppl@hotmail.com",
+        "description": "Gave me baby skin! But would want this to provide more brightening effects"
+      }
+    ]
+  },
+  {
+    "id": "second routine",
+    "routine_index": "002",
+    "description": "This helped me got rid of my post-inflammation hyperpigmentation! Interested gals (or guys!) feel free to comment and I'll reply!",
+    "image": "hoho.png",
+    "title": "Brighter face, mightier days!",
+    "user": {
+      "name": "Michael J",
+      "email": "MagicMike@hotmail.com"
+    },
+    "skin_type": ["combi_O", "oily"],
+    "products": {
+      "cleanser": "YTTP Super Food cleanser",
+      "exfoliator": "By Wishtrend Mandelic Acid Skin Prep Water",
+      "toner": "Benton Deep Green Tea Toner",
+      "serum": "Good Molecules Daily Brightening Serum",
+      "sunscreen": "Biore UV Aqua Rich Watery Essence"
+    },
+    "timing": ["Both"],
+    "comments": [
+      {
+        "score": 5,
+        "date": "2021-10-17",
+        "email": "art.art@gmail.com",
+        "description": "Significant improvement on my skin's texture and evened out my skintone. Remember your sunscreen as there are acids and vitamin C in this routine"
+      }
+    ]
+  },
+  {
+    "id": "",
+    "routine_index": "003",
+    "description": "Simple, succint, effective. Fall in.",
+    "image": "suave.png",
+    "title": "Damn good cleanse for the no-frills Gents",
+    "user": {
+      "name": "Jake",
+      "email": "Jakekentang@gmail.com"
+    },
+    "skin_type": "",
+    "products": {
+      "cleanser": "Elemis Superfood Facial Wash",
+      "moisturizer": "ORIGINS CLEAR IMPROVEMENT"
+    },
+    "timing": ["PM"],
+    "comments": [
+      {
+        "score": 2,
+        "date": "2020-02-29",
+        "email": "hehe@gmail.com",
+        "description": "Can a skincare routine get anymore toxic masculine than this? No suncreen, no nothing. Just testosterone. And truck loads of cash"
+      }
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "",
+    "name": "Krave Beauty Matcha Hemp Hydrating Cleanser",
+    "type": "cleanser",
+    "description": "A gentle gel cleanser infused with matcha and hempseed that respects your skin barrier suitable for all skintypes",
+    "suitability": ["dry", "combi_D", "combi_O", "oily", "sensitive"]
+  },
+  {
+    "id": "",
+    "name": "YTTP Super Food cleanser",
+    "type": "cleanser",
+    "description": "Gel cleanser infused with natural superfruits and kale. Charged with antioxidants",
+    "suitability": ["combi_O", "oily"]
+  },
+  {
+    "id": "",
+    "name": "Elemis Superfood Facial Wash",
+    "type": "cleanser",
+    "description": "A nourishing, nutrient-dense gel cleanser",
+    "suitability": ["combi_D", "combi_O", "oily"]
+  }
+]
