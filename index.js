@@ -22,22 +22,22 @@ app.use(cors());
 async function main() {
   await connect(process.env.MONGO_URI, "just_face_it");
 
-  function createProduct(prodObj) {
-    // validation
-    prodObj._id = new ObjectId();
-    let title = req.body.title ? req.body.title : "";
-    let type = req.body.type ? req.body.type : "";
+  // function createProduct(prodObj) {
+  //   // validation
+  //   prodObj._id = new ObjectId();
+  //   let title = req.body.title ? req.body.title : "";
+  //   let type = req.body.type ? req.body.type : "";
 
-    // insertOne
-    await;
-    // return insert
-  }
+  //   // insertOne
+  //   await db.collection("products").insertOne({
+  //   // return insert
+  // }
 
   // "landing page with tagline"
   app.get("/", (req, res) =>
     res.send("<h1 style=color:red>WANT GOOD SKIN THEN USE SUNSCREEN!</h1>")
   );
-  // testing api to display routines from DB
+  // To display all routines from database
   app.get("/routines", async function (req, res) {
     try {
       const data = await getDB().collection("routines").find().toArray();
@@ -53,8 +53,8 @@ async function main() {
   // allow user to CREATE new routines
   app.post("/routines", async function (req, res) {
     try {
-      let products = req.body.products ? req.body.products : "";
-      let prodAck = createProduct(products);
+      // let products = req.body.products ? req.body.products : "";
+      // let prodAck = createProduct(products);
 
       let description = req.body.description ? req.body.description : "";
       let image = req.body.image ? req.body.image : "";
@@ -64,9 +64,6 @@ async function main() {
       let skin_type = req.body.skin_type ? req.body.skin_type.split(",") : [];
       let timing = req.body.timing ? req.body.timing.split(",") : [];
       // let comments = req.body.comments;
-
-      // to put into DB
-
       const db = getDB();
 
       await db.collection("routines").insertOne({
@@ -78,7 +75,6 @@ async function main() {
           email: user_email,
         },
         skin_type: skin_type,
-        products: products,
         timing: timing,
         // comments: comments,
       });
@@ -90,6 +86,74 @@ async function main() {
       res.status(500);
       res.json({
         message: "Oh no.. Something went wrong. Please contact us",
+      });
+      console.log(e);
+    }
+  });
+
+  //UPDATING routine
+  app.put("/routines/:id", async function (req, res) {
+    try {
+      let description = req.body.description ? req.body.description : "";
+      let image = req.body.image ? req.body.image : "";
+      let title = req.body.title ? req.body.title : "";
+      let user_name = req.body.user.name ? req.body.user.name : "";
+      let user_email = req.body.user.email ? req.body.user.email : "";
+      let skin_type = req.body.skin_type ? req.body.skin_type.split(",") : [];
+      let timing = req.body.timing ? req.body.timing.split(",") : [];
+      // let comments = req.body.comments;
+      const db = getDB();
+
+      let r = await getDB()
+        .collection("routines")
+        .updateOne(
+          {
+            _id: ObjectId(req.params.id),
+          },
+          {
+            $set: {
+              description: description,
+              // image: image,
+              title: title,
+              user: {
+                name: user_name,
+                email: user_email,
+              },
+              skin_type: skin_type,
+              timing: timing,
+              // comments: comments
+            },
+          }
+        );
+      res.status(200);
+      res.json({
+        message: "Routine refreshed!",
+      });
+    } catch (e) {
+      res.status(500);
+      res.json({
+        message: "Oh no.. Something went wrong. Please contact us",
+      });
+      console.log(e);
+    }
+  });
+
+  //Allow user to DELETE routine
+  app.delete("/routines/:id", async function (req, res) {
+    try {
+      await getDB()
+        .collection("routines")
+        .deleteOne({
+          _id: ObjectId(req.params.id),
+        });
+      res.status(200);
+      res.json({
+        message: "routine deleted",
+      });
+    } catch (e) {
+      res.status(500);
+      res.json({
+        message: "The routine refuses to be deleted ",
       });
       console.log(e);
     }

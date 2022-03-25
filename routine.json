@@ -10,11 +10,7 @@
       "email": "thrashingsalmon@gmail.com"
     },
     "skin_type": "combi_D",
-    "products": {
-      "cleanser": "Krave Beauty Matcha Hemp Hydrating Cleanser",
-      "toner": "Dear Klair's Supple Prep Toner",
-      "moisturizer": "BOJ Dynasty Cream"
-    },
+    "products": [{ "product_id": "" }, { "product_id": "" }],
     "timing": "Both",
     "comments": [
       {
@@ -24,10 +20,10 @@
         "description": "Gave me baby skin! But would want this to provide more brightening effects"
       },
       {
-        "score": 4,
-        "date": "2021-05-24",
-        "email": "lppl@hotmail.com",
-        "description": "Gave me baby skin! But would want this to provide more brightening effects"
+        "score": 5,
+        "date": "2021-06-17",
+        "email": "zoetan@hotmail.com",
+        "description": "Soothed my sensitised skin"
       }
     ]
   },
@@ -42,13 +38,8 @@
       "email": "MagicMike@hotmail.com"
     },
     "skin_type": ["combi_O", "oily"],
-    "products": {
-      "cleanser": "YTTP Super Food cleanser",
-      "exfoliator": "By Wishtrend Mandelic Acid Skin Prep Water",
-      "toner": "Benton Deep Green Tea Toner",
-      "serum": "Good Molecules Daily Brightening Serum",
-      "sunscreen": "Biore UV Aqua Rich Watery Essence"
-    },
+    "products": [{ "product_id": "" }, { "product_id": "" }],
+
     "timing": ["Both"],
     "comments": [
       {
@@ -70,10 +61,7 @@
       "email": "Jakekentang@gmail.com"
     },
     "skin_type": "",
-    "products": {
-      "cleanser": "Elemis Superfood Facial Wash",
-      "moisturizer": "ORIGINS CLEAR IMPROVEMENT"
-    },
+    "products": [{ "product_id": "" }, { "product_id": "" }],
     "timing": ["PM"],
     "comments": [
       {
