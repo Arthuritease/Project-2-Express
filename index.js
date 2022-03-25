@@ -5,6 +5,8 @@ const ObjectId = require("mongodb").ObjectId;
 //const MongoUtil = require("./mongoUtil");
 const { connect, getDB } = require("./mongoUtil");
 const req = require("express/lib/request");
+const { param } = require("express/lib/request");
+const { Db } = require("mongodb");
 // const { urlencoded } = require("express"); WHY THE HECK ARE YOU HERE
 
 // Three parts of an Express application
@@ -37,7 +39,7 @@ async function main() {
   app.get("/", (req, res) =>
     res.send("<h1 style=color:red>WANT GOOD SKIN THEN USE SUNSCREEN!</h1>")
   );
-  // To display all routines from database
+  // To GET all routines from database
   app.get("/routines", async function (req, res) {
     try {
       const data = await getDB().collection("routines").find().toArray();
@@ -46,6 +48,38 @@ async function main() {
       res.status(500);
       res.json({
         message: "We can't face you at the moment.. please come back later..",
+      });
+      console.log(e);
+    }
+  });
+
+  // GET routines with search parameters
+  app.get("/routines/search", async function (req, res) {
+    try {
+      //create a variable to store search requirements
+      // "?" at the end of URL indicates key-value pair's value as search parameters
+      let criteria = {};
+      // searching for word "simple" in description
+      if (req.query.description) {
+        criteria["description"] = {
+          $regex: req.query.description,
+          $options: "i",
+        };
+      }
+
+      // search criteria for routine timing for "Both" AM and PM
+      if (req.query.timing) {
+        criteria["timing"] = {
+          $in: [req.query.timing],
+        };
+      }
+      let db = getDB();
+      let filtered = await db.collection("routines").find(criteria).toArray();
+      res.send(filtered);
+    } catch (e) {
+      res.status(500);
+      res.json({
+        message: "No routines fit your criteria, fam.",
       });
       console.log(e);
     }
