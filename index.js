@@ -56,30 +56,24 @@ async function main() {
   // GET routines with search parameters
   app.get("/routines/search", async function (req, res) {
     try {
-      //create a variable to store search requirements
-      // "?" at the end of URL indicates key-value pair's value as search parameters
-      let criteria = {};
-      // searching for word "simple" in description
+      let parameter = {};
       if (req.query.description) {
-        criteria["description"] = {
+        parameter["description"] = {
           $regex: req.query.description,
           $options: "i",
         };
       }
-
-      // search criteria for routine timing for "Both" AM and PM
-      if (req.query.timing) {
-        criteria["timing"] = {
-          $in: [req.query.timing],
-        };
-      }
-      let db = getDB();
-      let filtered = await db.collection("routines").find(criteria).toArray();
+      const filtered = await getDB()
+        .collection("routines")
+        .find(parameter)
+        .toArray();
+      if (filtered.length == 0) throw new Error(""); // this line allows "catch" to catch
       res.send(filtered);
     } catch (e) {
+      console.log("catching");
       res.status(500);
       res.json({
-        message: "No routines fit your criteria, fam.",
+        message: "aint no routines with your requirements, fam!",
       });
       console.log(e);
     }
