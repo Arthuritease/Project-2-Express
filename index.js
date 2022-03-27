@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(cors());
 
 async function main() {
-  await connect(process.env.MONGO_URI, "just_face_it");
+  await connect(process.env.MONGO_URL, "just_face_it");
 
   // function createProduct(prodObj) {
   //   // validation
@@ -37,7 +37,7 @@ async function main() {
 
   // "landing page with tagline"
   app.get("/", (req, res) =>
-    res.send("<h1 style=color:red>WANT GOOD SKIN THEN USE SUNSCREEN!</h1>")
+    res.send("<h1 style=color:red>WANT GOOD SKIN THEN USE SUNSCREEN!!!!</h1>")
   );
   // To GET all routines from database
   app.get("/routines", async function (req, res) {
@@ -339,6 +339,6 @@ async function main() {
 
 main();
 // Listen (must be the last)
-app.listen(3000, function () {
+app.listen(process.env.PORT, function () {
   console.log("Hang on..");
 });
