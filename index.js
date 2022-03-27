@@ -339,6 +339,6 @@ async function main() {
 
 main();
 // Listen (must be the last)
-app.listen(3000, function () {
+app.listen(process.env.PORT, function () {
   console.log("Hang on..");
 });
