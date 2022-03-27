@@ -1,7 +1,6 @@
 {
   "name": "project-2",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,5 +15,15 @@
     "express": "^4.17.3",
     "mongodb": "^4.4.1",
     "nodemon": "^2.0.15"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arthuritease/Project-2-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Arthuritease/Project-2-express/issues"
+  },
+  "homepage": "https://github.com/Arthuritease/Project-2-express#readme",
+  "description": ""
 }
