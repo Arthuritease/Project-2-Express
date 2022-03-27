@@ -37,7 +37,9 @@ async function main() {
 
   // "landing page with tagline"
   app.get("/", (req, res) =>
-    res.send("<h1 style=color:red>WANT GOOD SKIN THEN USE SUNSCREEN!!!!</h1>")
+    res.send(
+      "<h1 style=color:red>IF THIS DOESN'T APPEAR ON HEROKU I WILL SEPPUKU</h1>"
+    )
   );
   // To GET all routines from database
   app.get("/routines", async function (req, res) {
