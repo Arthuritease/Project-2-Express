@@ -54,6 +54,7 @@ async function main() {
   });
 
   // GET routines with search parameters
+  // query parameters begins after "?" e.g ? description=simple&body_tags=face
   app.get("/routines/search", async function (req, res) {
     try {
       let parameter = {};
@@ -186,10 +187,57 @@ async function main() {
       console.log(e);
     }
   });
+
+  //GET all documents in Products collection
+  app.get("/products", async function (req, res) {
+    try {
+      const data = await getDB().collection("products").find().toArray();
+      res.send(data);
+    } catch (e) {
+      res.status(500);
+      res.json({
+        message: "We can't face you at the moment.. please come back later..",
+      });
+      console.log(e);
+    }
+  });
+
+  // GET documents in Products based on search parameter
+  // query parameters begins after "?" e.g ? description=simple&suitability=oily
+  app.get("/products/search", async function (req, res) {
+    try {
+      let parameter = {};
+      if (req.query.description) {
+        parameter["description"] = {
+          $regex: req.query.description,
+          $options: "i",
+        };
+      }
+      // this line searches in suitability array
+      if (req.query.suitability) {
+        parameter["suitability"] = {
+          $in: [req.query.suitability],
+        };
+      }
+
+      const filtered = await getDB()
+        .collection("products")
+        .find(parameter)
+        .toArray();
+      if (filtered.length == 0) throw new Error(""); // this line allows "catch" to catch
+      res.send(filtered);
+    } catch (e) {
+      res.status(500);
+      res.json({
+        message: "aint no routines with your requirements, fam!",
+      });
+      console.log(e);
+    }
+  });
 }
 
 main();
 // Listen (must be the last)
 app.listen(3000, function () {
-  console.log("RUN BABY RUN?!");
+  console.log("Hang on..");
 });
