@@ -219,6 +219,18 @@ async function main() {
           $in: [req.query.suitability],
         };
       }
+      if (req.query.type) {
+        parameter["type"] = {
+          $regex: req.query.type,
+          $options: "i",
+        };
+      }
+      if (req.query.name) {
+        parameter["name"] = {
+          $regex: req.query.name,
+          $options: "i",
+        };
+      }
 
       const filtered = await getDB()
         .collection("products")
@@ -229,7 +241,96 @@ async function main() {
     } catch (e) {
       res.status(500);
       res.json({
-        message: "aint no routines with your requirements, fam!",
+        message: "aint no products as such, fam!",
+      });
+      console.log(e);
+    }
+  });
+  // CREATE new product entry into the Products collection
+  app.post("/products", async function (req, res) {
+    try {
+      // let products = req.body.products ? req.body.products : "";
+      // let prodAck = createProduct(products);
+      let name = req.body.name ? req.body.name : "";
+      let type = req.body.type ? req.body.type : "";
+      let description = req.body.description ? req.body.description : "";
+      let suitability = req.body.suitability ? req.body.suitability : [];
+
+      const db = getDB();
+
+      await db.collection("products").insertOne({
+        name: name,
+        type: type,
+        description: description,
+        suitability: suitability,
+      });
+      res.status(200);
+      res.json({
+        message: "Thank you for making us more inclusive!",
+      });
+    } catch (e) {
+      res.status(500);
+      res.json({
+        message: "Oh no.. Something went wrong. Please contact us",
+      });
+      console.log(e);
+    }
+  });
+  //UPDATING product entries
+  app.put("/products/:id", async function (req, res) {
+    try {
+      // let products = req.body.products ? req.body.products : "";
+      // let prodAck = createProduct(products);
+      let name = req.body.name ? req.body.name : "";
+      let type = req.body.type ? req.body.type : "";
+      let description = req.body.description ? req.body.description : "";
+      let suitability = req.body.suitability ? req.body.suitability : [];
+
+      const db = getDB();
+
+      let r = await db.collection("products").updateOne(
+        {
+          _id: ObjectId(req.params.id),
+        },
+        {
+          $set: {
+            name: name,
+            // image: image,
+            type: type,
+            description: description,
+            suitability: suitability,
+          },
+        }
+      );
+
+      res.status(200);
+      res.json({
+        message: "Products rejuvenated!",
+      });
+    } catch (e) {
+      res.status(500);
+      res.json({
+        message: "Oh no.. Something went wrong. Please contact us",
+      });
+      console.log(e);
+    }
+  });
+  app.delete("/products/:id", async function (req, res) {
+    try {
+      await getDB()
+        .collection("products")
+        .deleteOne({
+          _id: ObjectId(req.params.id),
+        });
+      res.status(200);
+      res.json({
+        message: "product nuked",
+      });
+    } catch (e) {
+      res.status(500);
+      res.json({
+        message:
+          "The product refuses to be go. Try again or contact us for high-level house cleaning ",
       });
       console.log(e);
     }
