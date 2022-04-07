@@ -54,6 +54,26 @@ async function main() {
       console.log(e);
     }
   });
+  // To GET all comments from each routine
+  app.get("/routines/:id/comments", async function (req, res) {
+    try {
+      const data = await getDB()
+        .collection("routines")
+        .find({
+          _id: ObjectId(req.params.id),
+        })
+        .project({ comments: 1 })
+        .toArray();
+      res.statusCode = 200;
+      res.send(data);
+    } catch (e) {
+      res.status(500);
+      res.json({
+        message: "We can't face you at the moment.. please come back later..",
+      });
+      console.log(e);
+    }
+  });
 
   // GET routines with search parameters
   // query parameters begins after "?" e.g ? description=simple&body_tags=face
@@ -342,6 +362,10 @@ async function main() {
 main();
 // Listen (must be the last)
 
-app.listen(process.env.PORT, function () {
+// app.listen(process.env.PORT, function () {
+//   console.log("Hang on..");
+// });
+
+app.listen(3001, function () {
   console.log("Hang on..");
 });
