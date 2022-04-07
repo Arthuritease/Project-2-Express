@@ -141,6 +141,61 @@ async function main() {
       console.log(e);
     }
   });
+  //Allow user to CREATE comments
+  app.post("/routines/:id/comments/create", async (req, res) => {
+    try {
+      const db = getDB();
+
+      let score = req.body.score;
+      // let date = req.body.date;
+      let email = req.body.email;
+      let description = req.body.description;
+      // let _id = new ObjectId();
+
+      let commentInfo = 0;
+
+      if (!email.includes("@")) {
+        commentInfo += 1;
+      }
+
+      if (description.length <= 4) {
+        commentInfo += 1;
+      }
+      // console.log(commentInfo)
+      if (commentInfo > 0) {
+        return res.status(406).json({
+          message: "Hello do something",
+        });
+      } else {
+        await db.collection("routines").updateOne(
+          {
+            _id: ObjectId(req.params.id),
+          },
+          {
+            $push: {
+              comments: {
+                score,
+                date: new Date(),
+                email,
+                description,
+                _id: new ObjectId(),
+              },
+            },
+          }
+        );
+        res.status(200);
+        res.json({
+          message: "Thanks for the submission!",
+        });
+      }
+    } catch (e) {
+      res.statusCode = 500;
+      res.send({
+        Message: "our routines refuses to accept your comments..",
+      });
+      console.log(e);
+    }
+  });
 
   //UPDATING routine
   app.put("/routines/:id", async function (req, res) {
@@ -362,10 +417,10 @@ async function main() {
 main();
 // Listen (must be the last)
 
-app.listen(process.env.PORT, function () {
-  console.log("Hang on..");
-});
-
-// app.listen(3001, function () {
+// app.listen(process.env.PORT, function () {
 //   console.log("Hang on..");
 // });
+
+app.listen(3001, function () {
+  console.log("Hang on..");
+});

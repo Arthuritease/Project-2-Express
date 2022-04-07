@@ -10,7 +10,7 @@ async function connect(uri, dbname) {
   });
 
   _db = client.db(dbname);
-  console.log("We are now serving");
+  console.log("Go play with your codes! Go!");
 }
 
 function getDB() {
