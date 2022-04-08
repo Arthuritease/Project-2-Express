@@ -149,7 +149,15 @@ async function main() {
           sunscreen: sunscreen,
         },
         timing: timing,
-        // comments: comments,
+        comments: [
+          {
+            score: "",
+            date: "",
+            email: "",
+            description: "",
+            _id: "",
+          },
+        ],
       });
       res.status(200);
       res.json({
