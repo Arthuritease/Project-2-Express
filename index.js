@@ -439,10 +439,10 @@ async function main() {
 main();
 // Listen (must be the last)
 
-// app.listen(process.env.PORT, function () {
-//   console.log("Hang on..");
-// });
-
-app.listen(3001, function () {
+app.listen(process.env.PORT, function () {
   console.log("Hang on..");
 });
+
+// app.listen(3001, function () {
+//   console.log("Hang on..");
+// });
