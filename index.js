@@ -107,13 +107,28 @@ async function main() {
       // let products = req.body.products ? req.body.products : "";
       // let prodAck = createProduct(products);
 
+      console.log(req.body);
+      console.log("----------------");
+
       let description = req.body.description ? req.body.description : "";
       let image = req.body.image ? req.body.image : "";
       let title = req.body.title ? req.body.title : "";
-      let user_name = req.body.user.name ? req.body.user.name : "";
-      let user_email = req.body.user.email ? req.body.user.email : "";
-      let skin_type = req.body.skin_type ? req.body.skin_type.split(",") : [];
-      let timing = req.body.timing ? req.body.timing.split(",") : [];
+      let user_name = req.body.name ? req.body.name : "";
+      let user_email = req.body.email ? req.body.email : "";
+      let skin_type = req.body.skin_type ? req.body.skin_type : [];
+      let timing = req.body.timing ? req.body.timing : "";
+      let cleanser = req.body.products.cleanser
+        ? req.body.products.cleanser
+        : "";
+      let toner = req.body.products.toner ? req.body.products.toner : "";
+      let serum = req.body.products.serum ? req.body.products.serum : "";
+      let moisturizer = req.body.products.moisturizer
+        ? req.body.products.moisturizer
+        : "";
+      let sunscreen = req.body.products.sunscreen
+        ? req.body.products.sunscreen
+        : "";
+
       // let comments = req.body.comments;
       const db = getDB();
 
@@ -126,6 +141,13 @@ async function main() {
           email: user_email,
         },
         skin_type: skin_type,
+        products: {
+          cleanser: cleanser,
+          toner: toner,
+          serum: serum,
+          moisturizer: moisturizer,
+          sunscreen: sunscreen,
+        },
         timing: timing,
         // comments: comments,
       });
@@ -417,10 +439,10 @@ async function main() {
 main();
 // Listen (must be the last)
 
-app.listen(process.env.PORT, function () {
-  console.log("Hang on..");
-});
-
-// app.listen(3000, function () {
+// app.listen(process.env.PORT, function () {
 //   console.log("Hang on..");
 // });
+
+app.listen(3001, function () {
+  console.log("Hang on..");
+});
