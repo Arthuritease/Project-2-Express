@@ -113,7 +113,7 @@ async function main() {
       let user_name = req.body.user.name ? req.body.user.name : "";
       let user_email = req.body.user.email ? req.body.user.email : "";
       let skin_type = req.body.skin_type ? req.body.skin_type.split(",") : [];
-      let timing = req.body.timing ? req.body.timing.split(",") : [];
+      let timing = req.body.timing ? req.body.timing : "";
       // let comments = req.body.comments;
       const db = getDB();
 
